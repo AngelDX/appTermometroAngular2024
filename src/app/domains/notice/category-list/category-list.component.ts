@@ -5,6 +5,7 @@ import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { CategoryCreateComponent } from '../category-create/category-create.component';
 import { CategoryService } from '../../../service/category.service';
 import { Category } from '../../../models/category';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-category-list',
@@ -19,6 +20,8 @@ export class CategoryListComponent implements OnInit{
 
   isModalOpen=false;
   category!:Category;
+
+  constructor(private toastr: ToastrService) {}
 
   ngOnInit(){
     this.getCategories();
@@ -42,7 +45,7 @@ export class CategoryListComponent implements OnInit{
   deleteCategory(id: number) {
     this.categoryService.deleteCategory(id).subscribe({
       next: (response) => {
-        //this.toastr.success('Registro eliminado');
+        this.toastr.success('Registro eliminado');
         this.getCategories();
       },
     });

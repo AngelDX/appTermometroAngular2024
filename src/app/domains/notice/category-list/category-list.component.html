@@ -54,3 +54,7 @@
       </div>
   </div>
 </div>
+
+<app-modal [isOpen]="isModalOpen" (closeModal)="closeModal()">
+  <app-category-create (onCloseModal)="closeModal()" [data]="category"></app-category-create>
+</app-modal>
